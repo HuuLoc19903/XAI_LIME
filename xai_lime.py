@@ -4,8 +4,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score, accuracy_score
 from interpret.blackbox import LimeTabular
 from interpret import show
-
 import numpy as np
+
 # %% Load and preprocess data
 data_loader = DataLoader()
 data_loader.load_dataset()
@@ -26,6 +26,7 @@ print(f"Accuracy {accuracy_score(y_test, y_pred)}")
 X_train_float = X_train.to_numpy(dtype=np.float64)
 # print(X_train)
 # print(X_train_float)
+
 # %% Apply lime
 # Initilize Lime for Tabular data
 lime = LimeTabular(model = rf,
@@ -33,7 +34,6 @@ lime = LimeTabular(model = rf,
                    feature_names = X_train.columns,
                    data = X_train_float, 
                    random_state = 1)
-
 # Get local explanations
 lime_local = lime.explain_local(X_test[-20:], 
                                 y_test[-20:], 
