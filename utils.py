@@ -31,14 +31,10 @@ class DataLoader():
         # Drop id as it is not relevant
         self.data.drop(["id"], axis=1, inplace=True)
 
-        # Standardization 
-        # Usually we would standardize here and convert it back later
-        # But for simplification we will not standardize / normalize the features
-
     def get_data_split(self):
         X = self.data.iloc[:,:-1]
         y = self.data.iloc[:,-1]
-        return train_test_split(X, y, test_size=0.20, random_state=2021)
+        return train_test_split(X, y, test_size=0.20, random_state=2023)
     
     def oversample(self, X_train, y_train):
         oversample = RandomOverSampler(sampling_strategy='minority')
@@ -50,4 +46,4 @@ class DataLoader():
         x_over = pd.DataFrame(x_np, columns=X_train.columns)
         y_over = pd.Series(y_np, name=y_train.name)
         return x_over, y_over
-
+    
