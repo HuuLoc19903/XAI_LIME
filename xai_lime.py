@@ -27,12 +27,13 @@ rf.fit(X_train, y_train)
 y_pred = rf.predict(X_test)
 print(f"F1 Score {f1_score(y_test, y_pred, average ='macro')}")
 print(f"Accuracy {accuracy_score(y_test, y_pred)}")
+
+# %% Plot the confusion matrix.
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
-cm = confusion_matrix(y_test,y_pred)
 
-#Plot the confusion matrix.
+cm = confusion_matrix(y_test,y_pred)
 sns.heatmap(cm,
             annot=True,
             fmt='g',
